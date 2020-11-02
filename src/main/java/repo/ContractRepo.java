@@ -10,6 +10,11 @@ import Entities.Contract;
 public final class ContractRepo {
 
 	/**
+	 * Current Contract Array pointer
+	 */
+	private int pointer = 0;
+
+	/**
 	 * Contract Array field
 	 */
 	private static Contract[] repo;
@@ -35,43 +40,56 @@ public final class ContractRepo {
 	/**
 	 * mthd for adding new Contract inst to Array of Contracts
 	 * @param contract
-	 * @param id
 	 * @return bool success result
 	 */
-	public boolean add(Contract contract, int id){
-		if(repo.length<id){
-			while (repo.length<id){
-				expand();
+	public void add(Contract contract){
+		boolean check = true;
+
+		for(int i=0; i<pointer;i++){
+			if (repo[i].getId() == contract.getId()) {
+				check = false;
 			}
 		}
-		repo[id]=contract;
-		return true;
+		if(pointer==repo.length-1){
+			expand();
+		}
+		if(check){
+			repo[pointer]=contract;
+			System.out.println(repo[pointer].getId());
+			pointer++;
+		}
 	}
 
 	/**
-	 * mthd for getting Contract instance by recieved #id
-	 * @param id
+	 * mthd for getting Contract instance by recieved Contract id
+	 * @param contractId contract id
 	 * @return Contract instance
 	 */
-	public Contract get(int id){
-		if(repo.length>id){
-			return repo[id];
+	public Contract get(int contractId){
+		for (int i=0;i<pointer;i++){
+			if(repo[i].getId()==contractId)
+				return repo[i];
 		}
 		return null;
 	}
 
 	/**
-	 * mthd deletes Contract instance from Contract Array
-	 * @param id
+	 * mthd deletes Contract instance from Contract Array by given Contract id
+	 * @param contractId contract id
 	 * @return bool success result
 	 */
-	public boolean delete(int id){
-		if(repo.length<id){
+	public boolean delete(int contractId){
+		if(contractId>repo.length-1){
 			return false;
-		}else {
-			repo[id]=null;
-			return true;
+		} else {
+			for(int i=0;i<pointer;i++){
+				if(repo[i].getId() == contractId){
+					repo[i]=null;
+					pointer--;
+				}
+			}
 		}
+		return true;
 	}
 
 	/**

@@ -201,4 +201,6 @@ public class Client {
 	public void setPassportId(int passportId) {
 		this.passportId = passportId;
 	}
+
 }
+

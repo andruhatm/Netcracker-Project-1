@@ -1,4 +1,5 @@
 import Entities.Client;
+import Entities.Contract;
 import Entities.contracts.InternetContract;
 import Entities.contracts.MobileContract;
 import Entities.contracts.TVContract;
@@ -82,13 +83,13 @@ public class Tests {
 						Package.fifth
 		);
 
-		repo.add(internetContract,1);
-		repo.add(mobileContract,2);
-		repo.add(tvContract,3);
+		repo.add(mobileContract);
+		repo.add(tvContract);
+		repo.add(internetContract);
 	}
 
 	/**
-	 * checks if age of Client are correct
+	 * checks if age of Client is correct
 	 */
 	@Test
 	public void getAgeTest(){
@@ -110,7 +111,7 @@ public class Tests {
 	 */
 	@Test
 	public void addContractRepoTest(){
-		Assert.assertNull(repo.get(5));
+		Assert.assertNull(repo.get(10));
 
 		Client client = new Client(
 						5,
@@ -124,15 +125,15 @@ public class Tests {
 		);
 
 		TVContract tvContract = new TVContract(
-						4,
+						10,
 						LocalDate.of(2020,1,10),
 						LocalDate.of(2020,2,10),
 						client,
 						Package.fifth
 		);
 
-		repo.add(tvContract,5);
-		Assert.assertNotNull(repo.get(5));
+		repo.add(tvContract);
+		Assert.assertNotNull(repo.get(10));
 	}
 
 	@Test
@@ -148,18 +149,19 @@ public class Tests {
 						123456,
 						3245
 		);
-		TVContract tvContract = new TVContract(
-						6,
-						LocalDate.of(2020,1,10),
-						LocalDate.of(2020,2,10),
-						client,
-						Package.fifth
-		);
-		repo.add(tvContract,25);
+
+		for(int i=0;i<25;i++){
+			repo.add(new TVContract(
+							i,
+							LocalDate.of(2020,1,10),
+							LocalDate.of(2020,2,10),
+							client,
+							Package.fifth
+			));
+		}
 		Assert.assertEquals(30,repo.getLength());
 
 	}
-
 	/**
 	 * checks if received Contracts return correct id
 	 */
@@ -186,16 +188,16 @@ public class Tests {
 						3245
 		);
 		TVContract tvContract = new TVContract(
-						1,
+						8,
 						LocalDate.of(2020,1,10),
 						LocalDate.of(2020,2,10),
 						client,
 						Package.fifth
 		);
-		repo.add(tvContract,4);
+		repo.add(tvContract);
 
-		Assert.assertEquals(1,repo.get(4).getId());
-		repo.delete(4);
-		Assert.assertNull(repo.get(4));
+		Assert.assertEquals(8,repo.get(8).getId());
+		repo.delete(8);
+		Assert.assertNull(repo.get(8));
 	}
 }
