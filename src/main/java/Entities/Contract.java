@@ -103,4 +103,14 @@ public class Contract {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	@Override
+	public String toString() {
+		return "Contract{" +
+						"id=" + id +
+						", startingDate=" + startingDate +
+						", finishingDate=" + finishingDate +
+						", client=" + client +
+						'}';
+	}
 }

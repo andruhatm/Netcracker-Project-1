@@ -86,6 +86,10 @@ public final class ContractRepo {
 				if(repo[i].getId() == contractId){
 					repo[i]=null;
 					pointer--;
+					for(int j=i;j<repo.length-1;j++){
+						repo[j]=repo[j+1];
+					}
+					getRepo();
 				}
 			}
 		}
@@ -98,5 +102,12 @@ public final class ContractRepo {
 	 */
 	public int getLength(){
 		return repo.length;
+	}
+
+	public void getRepo(){
+		for (int i=0;i<pointer;i++){
+			System.out.println(repo[i].toString());
+		}
+		System.out.println("--------");
 	}
 }

@@ -83,9 +83,9 @@ public class Tests {
 						Package.fifth
 		);
 
-		repo.add(mobileContract);
-		repo.add(tvContract);
-		repo.add(internetContract);
+		repo.add(mobileContract); //2
+		repo.add(tvContract);     //3
+		repo.add(internetContract); //1
 	}
 
 	/**
@@ -195,9 +195,12 @@ public class Tests {
 						Package.fifth
 		);
 		repo.add(tvContract);
-
 		Assert.assertEquals(8,repo.get(8).getId());
-		repo.delete(8);
-		Assert.assertNull(repo.get(8));
+
+		repo.getRepo();
+
+		repo.delete(3);
+
+		Assert.assertNull(repo.get(3));
 	}
 }
