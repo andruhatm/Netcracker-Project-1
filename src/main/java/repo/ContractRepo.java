@@ -1,13 +1,19 @@
 package repo;
 
 import Entities.Contract;
+import org.jetbrains.annotations.NotNull;
+import repo.sorters.BubbleSorter;
+import repo.sorters.Sorter;
+
+import java.util.Comparator;
+import java.util.function.Predicate;
 
 /**
  * Repository class for various Contracts
  * @author andruha.tm
  * @version 1.0
  */
-public final class ContractRepo {
+public final class ContractRepo implements Repo<Contract>{
 
 	/**
 	 * Current Contract Array pointer
@@ -17,13 +23,19 @@ public final class ContractRepo {
 	/**
 	 * Contract Array field
 	 */
-	private static Contract[] repo;
+	private Contract[] repo;
+
+	/**
+	 * Sorter field
+	 */
+	private Sorter<Contract> sorter;
 
 	/**
 	 * Constructor - creating new instance of Repository
 	 */
 	public ContractRepo() {
 		repo = new Contract[20];
+		sorter = new BubbleSorter<>();
 	}
 
 	/**
@@ -39,10 +51,10 @@ public final class ContractRepo {
 
 	/**
 	 * mthd for adding new Contract inst to Array of Contracts
-	 * @param contract
-	 * @return bool success result
+	 * @param contract Contract to add
 	 */
-	public void add(Contract contract){
+	@Override
+	public void add(@NotNull Contract contract){
 		boolean check = true;
 
 		for(int i=0; i<pointer;i++){
@@ -55,7 +67,6 @@ public final class ContractRepo {
 		}
 		if(check){
 			repo[pointer]=contract;
-			System.out.println(repo[pointer].getId());
 			pointer++;
 		}
 	}
@@ -65,6 +76,7 @@ public final class ContractRepo {
 	 * @param contractId contract id
 	 * @return Contract instance
 	 */
+	@Override
 	public Contract get(int contractId){
 		for (int i=0;i<pointer;i++){
 			if(repo[i].getId()==contractId)
@@ -78,6 +90,7 @@ public final class ContractRepo {
 	 * @param contractId contract id
 	 * @return bool success result
 	 */
+	@Override
 	public boolean delete(int contractId){
 		if(contractId>repo.length-1){
 			return false;
@@ -89,11 +102,40 @@ public final class ContractRepo {
 					for(int j=i;j<repo.length-1;j++){
 						repo[j]=repo[j+1];
 					}
-					getRepo();
+					outputRepo();
 				}
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * mthd to sort repo obj's by custom comparator
+	 * @param comparator custom filtering
+	 */
+	@Override
+	public void sortBy(Comparator<Contract> comparator) {
+		repo = sorter.sort(getRepo(),comparator);
+		//outputRepo();
+	}
+
+	/**
+	 * mthd to filter repo with unique condition
+	 * @param predicate bool lambda
+	 * @return new Repo with filtered obj's
+	 */
+	@Override
+	public ContractRepo searchBy(Predicate<Contract> predicate) {
+		ContractRepo result = new ContractRepo();
+
+		for (int i=0;i<pointer;i++){
+			if(repo[i]!=null) {
+				if (predicate.test(repo[i])) {
+					result.add(repo[i]);
+				}
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -104,10 +146,35 @@ public final class ContractRepo {
 		return repo.length;
 	}
 
-	public void getRepo(){
+	/**
+	 * mthd for getting Contract Array field
+	 * @return Contract[]
+	 */
+	@Override
+	public Contract[] getRepo() {
+		Contract[] repository =  new Contract[pointer];
+		for(int i = 0;i<pointer;i++){
+			repository[i]=repo[i];
+		}
+		return repository;
+	}
+
+	/**
+	 * mthd for current Repo state output
+	 */
+	@Override
+	public void outputRepo(){
 		for (int i=0;i<pointer;i++){
 			System.out.println(repo[i].toString());
 		}
 		System.out.println("--------");
+	}
+
+	/**
+	 * mthd to retrun pointer of Contract Array
+	 * @return pointer
+	 */
+	public int getPointer() {
+		return this.pointer;
 	}
 }

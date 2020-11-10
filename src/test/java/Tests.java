@@ -197,7 +197,7 @@ public class Tests {
 		repo.add(tvContract);
 		Assert.assertEquals(8,repo.get(8).getId());
 
-		repo.getRepo();
+		repo.outputRepo();
 
 		repo.delete(3);
 
