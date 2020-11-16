@@ -1,7 +1,6 @@
 package Entities;
 
 import Entities.enums.Sex;
-
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -73,6 +72,12 @@ public class Client {
 	public int getAge(){
 		return Period.between(dateOfBirth,LocalDate.now()).getYears();
 	}
+
+	/**
+	 * mthd for getting full client's passport info
+	 * @return full passport info
+	 */
+	public String getPassport(){return String.valueOf(getPassportSeries());}
 
 	/**
 	 * mthd for getting value of {@link Client#id}
@@ -202,5 +207,18 @@ public class Client {
 		this.passportId = passportId;
 	}
 
+	@Override
+	public String toString() {
+		return "Client{" +
+						"id=" + id +
+						", name='" + name + '\'' +
+						", surname='" + surname + '\'' +
+						", patronymic='" + patronymic + '\'' +
+						", dateOfBirth=" + dateOfBirth +
+						", sex=" + sex +
+						", passportSeries=" + passportSeries +
+						", passportId=" + passportId +
+						'}';
+	}
 }
 

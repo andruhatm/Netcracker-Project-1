@@ -110,7 +110,7 @@ public class Contract {
 						"id=" + id +
 						", startingDate=" + startingDate +
 						", finishingDate=" + finishingDate +
-						", client=" + client +
+						", client=" + client.toString() +
 						'}';
 	}
 }

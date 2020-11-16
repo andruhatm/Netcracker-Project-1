@@ -4,7 +4,6 @@ import Entities.Contract;
 import org.jetbrains.annotations.NotNull;
 import repo.sorters.BubbleSorter;
 import repo.sorters.Sorter;
-
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -55,17 +54,18 @@ public final class ContractRepo implements Repo<Contract>{
 	 */
 	@Override
 	public void add(@NotNull Contract contract){
-		boolean check = true;
+//		boolean check = true;
+//
+//		for(int i=0; i<pointer;i++){
+//			if (repo[i].getId() == contract.getId()) {
+//				check = false;
+//			}
+//		}
 
-		for(int i=0; i<pointer;i++){
-			if (repo[i].getId() == contract.getId()) {
-				check = false;
-			}
-		}
 		if(pointer==repo.length-1){
 			expand();
 		}
-		if(check){
+		if(checkContractId(contract.getId())){
 			repo[pointer]=contract;
 			pointer++;
 		}
@@ -102,7 +102,7 @@ public final class ContractRepo implements Repo<Contract>{
 					for(int j=i;j<repo.length-1;j++){
 						repo[j]=repo[j+1];
 					}
-					outputRepo();
+					//outputRepo();
 				}
 			}
 		}
@@ -153,9 +153,7 @@ public final class ContractRepo implements Repo<Contract>{
 	@Override
 	public Contract[] getRepo() {
 		Contract[] repository =  new Contract[pointer];
-		for(int i = 0;i<pointer;i++){
-			repository[i]=repo[i];
-		}
+		if (pointer >= 0) System.arraycopy(repo, 0, repository, 0, pointer);
 		return repository;
 	}
 
@@ -171,10 +169,28 @@ public final class ContractRepo implements Repo<Contract>{
 	}
 
 	/**
+	 * mthd for checking Contract id uniqueness
+	 * @param id Contract id to check
+	 * @return true if no contracts in repo with such id, otherwise false
+	 */
+	public boolean checkContractId(int id) {
+		boolean check = true;
+
+		for(int i=0; i<pointer;i++){
+			if (repo[i].getId() == id) {
+				check = false;
+				break;
+			}
+		}
+		return check;
+	}
+
+	/**
 	 * mthd to retrun pointer of Contract Array
 	 * @return pointer
 	 */
 	public int getPointer() {
 		return this.pointer;
 	}
+
 }

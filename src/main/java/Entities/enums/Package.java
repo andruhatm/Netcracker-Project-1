@@ -6,11 +6,22 @@ package Entities.enums;
  * @version 1.0
  */
 public enum Package {
-	first,
-	second,
-	third,
-	fourth,
-	fifth,
-	sixth,
-	seventh
+
+	first(1),
+	second(2),
+	third(3),
+	fourth(4),
+	fifth(5),
+	sixth(6),
+	seventh(7);
+
+	private int id;
+
+	Package(int i) {
+		this.id = i;
+	}
+
+	public int getId() {
+		return id;
+	}
 }

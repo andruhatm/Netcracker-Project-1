@@ -1,10 +1,8 @@
 package main;
 
-import Entities.Client;
-import Entities.contracts.TVContract;
-import Entities.enums.Package;
-import Entities.enums.Sex;
 import org.jetbrains.annotations.NotNull;
+import repo.ContractRepo;
+import repo.builders.CsvContractRepoBuilder;
 
 /**
  * @author andruha.tm
@@ -17,6 +15,7 @@ public class Main {
 	 * @param args of cmd line
 	 */
 	public static void main(@NotNull String[] args) {
-
+		ContractRepo repo = new CsvContractRepoBuilder().build("src/main/resources/netcracker lab3.csv");
+		repo.outputRepo();
 	}
 }
