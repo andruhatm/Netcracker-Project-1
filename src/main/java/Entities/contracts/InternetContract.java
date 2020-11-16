@@ -46,4 +46,11 @@ public class InternetContract extends Contract {
 	public void setMaxSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
+
+	@Override
+	public String toString() {
+		return "InternetContract{" +
+						"maxSpeed=" + maxSpeed +
+						'}';
+	}
 }

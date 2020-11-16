@@ -89,4 +89,13 @@ public class MobileContract extends Contract {
 	public void setGbCount(float gbCount) {
 		GbCount = gbCount;
 	}
+
+	@Override
+	public String toString() {
+		return "MobileContract{" +
+						"minutesCount=" + minutesCount +
+						", SMSCount=" + SMSCount +
+						", GbCount=" + GbCount +
+						'}';
+	}
 }

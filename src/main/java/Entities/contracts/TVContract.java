@@ -47,4 +47,11 @@ public class TVContract extends Contract {
 	public void setaPackage(Package aPackage) {
 		this.aPackage = aPackage;
 	}
+
+	@Override
+	public String toString() {
+		return "TVContract{" +
+						"aPackage=" + aPackage +
+						'}';
+	}
 }

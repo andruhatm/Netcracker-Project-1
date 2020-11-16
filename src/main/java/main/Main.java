@@ -16,6 +16,6 @@ public class Main {
 	 */
 	public static void main(@NotNull String[] args) {
 		ContractRepo repo = new CsvContractRepoBuilder().build("src/main/resources/netcracker lab3.csv");
-		repo.outputRepo();
+		repo.outputContractRepo();
 	}
 }

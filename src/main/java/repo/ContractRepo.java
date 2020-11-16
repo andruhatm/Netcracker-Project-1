@@ -1,6 +1,9 @@
 package repo;
 
 import Entities.Contract;
+import Entities.contracts.InternetContract;
+import Entities.contracts.MobileContract;
+import Entities.contracts.TVContract;
 import org.jetbrains.annotations.NotNull;
 import repo.sorters.BubbleSorter;
 import repo.sorters.Sorter;
@@ -164,6 +167,24 @@ public final class ContractRepo implements Repo<Contract>{
 	public void outputRepo(){
 		for (int i=0;i<pointer;i++){
 			System.out.println(repo[i].toString());
+		}
+		System.out.println("--------");
+	}
+
+	/**
+	 * mthd for logging Contract Type's unique specs
+	 */
+	public void outputContractRepo(){
+		for (int i=0;i<pointer;i++){
+			if (repo[i].getClass().equals(InternetContract.class)){
+				System.out.println(((InternetContract) repo[i]).toString());
+			}
+			else if (repo[i].getClass().equals(MobileContract.class)){
+				System.out.println(((MobileContract) repo[i]).toString());
+			}
+			else if (repo[i].getClass().equals(TVContract.class)){
+				System.out.println(((TVContract) repo[i]).toString());
+			}
 		}
 		System.out.println("--------");
 	}
