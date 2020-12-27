@@ -12,17 +12,57 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import repo.ContractRepo;
+import repo.validators.Message;
+import repo.validators.ValidateStatus;
+import repo.validators.Validator;
+import repo.validators.impl.base.AgeValidator;
+import repo.validators.impl.base.ContractPeriodValidator;
+import repo.validators.impl.base.FioValidator;
+import repo.validators.impl.base.PassportValidator;
+import repo.validators.impl.internet.DataCountValidator;
+import repo.validators.impl.mobile.TrafficDataValidator;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * RepoBuilderClass
+ * @author andruha.tm
+ * @version 1.0
+ */
 public class CsvContractRepoBuilder {
 
+	/**
+	 * repo filed to return
+	 */
 	private final ContractRepo repo = new ContractRepo();
 
-	private ArrayList<Client> clients = new ArrayList<>();
+	/**
+	 * clients list field to check uniqueness
+	 */
+	private final ArrayList<Client> clients = new ArrayList<>();
 
+	/**
+	 * validator list field
+	 */
+	private static final List<Validator<Contract>> validators = new ArrayList<>();
+	static {
+		validators.add(new ContractPeriodValidator());
+		validators.add(new FioValidator());
+		validators.add(new AgeValidator());
+		validators.add(new PassportValidator());
+		validators.add(new DataCountValidator());
+		validators.add(new TrafficDataValidator());
+	}
+
+	/**
+	 * builds repo from file by {@link CSVParser} and {@link CSVReader}
+	 * @param path file to build from
+	 * @return ready repo
+	 */
 	public final ContractRepo build(String path){
 		try(BufferedReader reader = new BufferedReader(new FileReader(new File(path)))) {
 
@@ -62,7 +102,6 @@ public class CsvContractRepoBuilder {
 										Integer.parseInt(line[7]),
 										Integer.parseInt(line[8])
 						);
-
 						currentClient = client;
 						clients.add(client);
 					}
@@ -93,7 +132,9 @@ public class CsvContractRepoBuilder {
 											Integer.parseInt(specs[1]),
 											Float.parseFloat(specs[2])
 							);
-							repo.add(contract);
+							if(doValidate(contract)) {
+								repo.add(contract);
+							}
 							break;
 						case "tv":
 							Contract contract1 = new TVContract(
@@ -111,7 +152,10 @@ public class CsvContractRepoBuilder {
 											currentClient,
 											Package.valueOf(line[9])
 							);
-							repo.add(contract1);
+
+							if(doValidate(contract1)) {
+								repo.add(contract1);
+							}
 							break;
 						case "ethernet":
 							Contract contract2 = new InternetContract(
@@ -129,7 +173,10 @@ public class CsvContractRepoBuilder {
 											currentClient,
 											Double.parseDouble(line[9])
 							);
-							repo.add(contract2);
+
+							if(doValidate(contract2)) {
+								repo.add(contract2);
+							}
 							break;
 					}
 
@@ -140,6 +187,35 @@ public class CsvContractRepoBuilder {
 		}
 
 		return repo;
+	}
+
+	/**
+	 * streams contract throw validators to check for warnings
+	 * @param contract contract ready to add in repo
+	 * @return bool success value
+	 */
+	public boolean doValidate(Contract contract){
+
+//		List<Message> messages = validators.stream()
+//						.filter(v -> v.getAppliableClass().isInstance(contract.getClass()))
+//						.map(v -> v.validate(contract))
+//						.collect(Collectors.toList());
+
+		for (Validator<Contract> validator: validators){
+
+			if(validator.getAppliableClass().equals(contract.getClass())){
+				if(validator.validate(contract).getStatus() == (ValidateStatus.WARNING)){
+					return false;
+				}
+			}
+
+			else if (validator.getAppliableClass().equals(Contract.class)){
+				if(validator.validate(contract).getStatus() == (ValidateStatus.WARNING)){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
