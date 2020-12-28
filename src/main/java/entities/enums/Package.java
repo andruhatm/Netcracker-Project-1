@@ -1,4 +1,4 @@
-package Entities.enums;
+package entities.enums;
 
 /**
  * Enum represents TV packages available
@@ -6,7 +6,6 @@ package Entities.enums;
  * @version 1.0
  */
 public enum Package {
-
 	first(1),
 	second(2),
 	third(3),
@@ -17,7 +16,7 @@ public enum Package {
 
 	private int id;
 
-	Package(int i) {
+	Package(final int i) {
 		this.id = i;
 	}
 

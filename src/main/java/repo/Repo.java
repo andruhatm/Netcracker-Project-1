@@ -1,25 +1,22 @@
 package repo;
 
-import Entities.Contract;
-import org.jetbrains.annotations.NotNull;
-
+import entities.Contract;
 import java.util.Comparator;
 import java.util.function.Predicate;
+import org.jetbrains.annotations.NotNull;
 
 public interface Repo<T> {
+	void add(@NotNull T contract);
 
-	public void add(@NotNull T contract);
+	T get(int contractId);
 
-	public T get(int contractId);
+	boolean delete(int contractId);
 
-	public boolean delete(int contractId);
+	void sortBy(Comparator<T> comparator);
 
-	public void sortBy(Comparator<T> comparator);
+	Repo<T> searchBy(Predicate<Contract> predicate);
 
-	public Repo<T> searchBy(Predicate<Contract> predicate);
+	void outputRepo();
 
-	public void outputRepo();
-
-	public Contract[] getRepo();
-
+	Contract[] getRepo();
 }

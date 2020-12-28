@@ -1,29 +1,35 @@
 package repo.validators.impl.internet;
 
-import Entities.Contract;
-import Entities.contracts.InternetContract;
+import entities.Contract;
+import entities.contracts.InternetContract;
 import org.apache.log4j.Logger;
 import repo.validators.Message;
 import repo.validators.ValidateStatus;
 import repo.validators.Validator;
-import repo.validators.impl.base.FioValidator;
 
 public class DataCountValidator implements Validator<Contract> {
+	static final Logger logger = Logger.getLogger(DataCountValidator.class);
 
-	final static Logger logger = Logger.getLogger(DataCountValidator.class);
-
+	/**
+	 * validates received Contract by Contract's speed argument
+	 * @param o obj to validate
+	 * @return bool
+	 */
 	@Override
-	public Message validate(Contract o) {
+	public Message validate(final Contract o) {
 		InternetContract contract = (InternetContract) o;
-		if(contract.getMaxSpeed()<0){
+		if (contract.getMaxSpeed() < 0) {
 			logger.warn("Illegal speed count");
 			return new Message("Illegal speed count", ValidateStatus.WARNING);
-		}
-		else {
+		} else {
 			return new Message(ValidateStatus.OK);
 		}
 	}
 
+	/**
+	 * returns applicable class for validator
+	 * @return class
+	 */
 	@Override
 	public Class<?> getAppliableClass() {
 		return InternetContract.class;

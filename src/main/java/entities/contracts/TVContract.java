@@ -1,10 +1,8 @@
-package Entities.contracts;
+package entities.contracts;
 
-import Entities.Client;
-import Entities.Contract;
-import Entities.enums.Package;
-
-import java.sql.Date;
+import entities.Client;
+import entities.Contract;
+import entities.enums.Package;
 import java.time.LocalDate;
 
 /**
@@ -13,11 +11,10 @@ import java.time.LocalDate;
  * @version 1.0
  */
 public class TVContract extends Contract {
-
 	/**
 	 * TV package field
 	 */
-	Package aPackage;
+	private Package aPackage;
 
 	/**
 	 * Constructor - creates new instance of TV Contract
@@ -27,7 +24,13 @@ public class TVContract extends Contract {
 	 * @param client Client entity associated with Contract
 	 * @param aPackage
 	 */
-	public TVContract(int id, LocalDate startingDate, LocalDate finishingDate, Client client, Package aPackage) {
+	public TVContract(
+		final int id,
+		final LocalDate startingDate,
+		final LocalDate finishingDate,
+		final Client client,
+		final Package aPackage
+	) {
 		super(id, startingDate, finishingDate, client);
 		this.aPackage = aPackage;
 	}
@@ -44,14 +47,16 @@ public class TVContract extends Contract {
 	 * mthd for setting package of channels of Contract
 	 * @param aPackage
 	 */
-	public void setaPackage(Package aPackage) {
+	public void setaPackage(final Package aPackage) {
 		this.aPackage = aPackage;
 	}
 
+	/**
+	 * toString mthd
+	 * @return TVContract obj values
+	 */
 	@Override
 	public String toString() {
-		return "TVContract{" +
-						"aPackage=" + aPackage +
-						'}';
+		return "TVContract{" + "aPackage=" + aPackage + '}';
 	}
 }

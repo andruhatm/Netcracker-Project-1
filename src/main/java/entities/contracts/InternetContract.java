@@ -1,9 +1,7 @@
-package Entities.contracts;
+package entities.contracts;
 
-import Entities.Client;
-import Entities.Contract;
-
-import java.sql.Date;
+import entities.Client;
+import entities.Contract;
 import java.time.LocalDate;
 
 /**
@@ -12,7 +10,6 @@ import java.time.LocalDate;
  * @version 1.0
  */
 public class InternetContract extends Contract {
-
 	/**
 	 * Max ethernet speed allowed by Contract
 	 */
@@ -26,7 +23,13 @@ public class InternetContract extends Contract {
 	 * @param client Client entity associated with Contract
 	 * @param maxSpeed max speed allowed by Contract
 	 */
-	public InternetContract(int id, LocalDate startingDate, LocalDate finishingDate, Client client, double maxSpeed) {
+	public InternetContract(
+		final int id,
+		final LocalDate startingDate,
+		final LocalDate finishingDate,
+		final Client client,
+		final double maxSpeed
+	) {
 		super(id, startingDate, finishingDate, client);
 		this.maxSpeed = maxSpeed;
 	}
@@ -43,14 +46,16 @@ public class InternetContract extends Contract {
 	 * mthd for setting value of {@link InternetContract#maxSpeed}
 	 * @param maxSpeed
 	 */
-	public void setMaxSpeed(double maxSpeed) {
+	public void setMaxSpeed(final double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
 
+	/**
+	 * toString mthd
+	 * @return InternetContract obj values
+	 */
 	@Override
 	public String toString() {
-		return "InternetContract{" +
-						"maxSpeed=" + maxSpeed +
-						'}';
+		return "InternetContract{" + "maxSpeed=" + maxSpeed + '}';
 	}
 }

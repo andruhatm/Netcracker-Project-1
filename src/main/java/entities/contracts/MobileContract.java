@@ -1,9 +1,7 @@
-package Entities.contracts;
+package entities.contracts;
 
-import Entities.Client;
-import Entities.Contract;
-
-import java.sql.Date;
+import entities.Client;
+import entities.Contract;
 import java.time.LocalDate;
 
 /**
@@ -19,11 +17,11 @@ public class MobileContract extends Contract {
 	/**
 	 * Count of SMS's allowed by Contract
 	 */
-	private int SMSCount;
+	private int smsCount;
 	/**
 	 * Count of Ethernet Gb's allowed by Contract
 	 */
-	private float GbCount;
+	private float gbCount;
 
 	/**
 	 * Constructor - creates new instance of Mobil Ethernet Contract
@@ -32,14 +30,22 @@ public class MobileContract extends Contract {
 	 * @param finishingDate finishing date of contract
 	 * @param client client's entity associated with Contract
 	 * @param minutesCount minutes count allowed by Contract
-	 * @param SMSCount SMS's count allowed by Contract
+	 * @param smsCount SMS's count allowed by Contract
 	 * @param gbCount Gb's count allowed by Contract
 	 */
-	public MobileContract(int id, LocalDate startingDate, LocalDate finishingDate, Client client, int minutesCount, int SMSCount, float gbCount) {
+	public MobileContract(
+		final int id,
+		final LocalDate startingDate,
+		final LocalDate finishingDate,
+		final Client client,
+		final int minutesCount,
+		final int smsCount,
+		final float gbCount
+	) {
 		super(id, startingDate, finishingDate, client);
 		this.minutesCount = minutesCount;
-		this.SMSCount = SMSCount;
-		GbCount = gbCount;
+		this.smsCount = smsCount;
+		this.gbCount = gbCount;
 	}
 
 	/**
@@ -54,48 +60,57 @@ public class MobileContract extends Contract {
 	 * mthd for setting value of {@link MobileContract#minutesCount}
 	 * @param minutesCount
 	 */
-	public void setMinutesCount(int minutesCount) {
+	public void setMinutesCount(final int minutesCount) {
 		this.minutesCount = minutesCount;
 	}
 
 	/**
-	 * mthd for getting value of {@link MobileContract#SMSCount}
+	 * mthd for getting value of {@link MobileContract#smsCount}
 	 * @return Contract Sms's count
 	 */
-	public int getSMSCount() {
-		return SMSCount;
+	public int getSmsCount() {
+		return smsCount;
 	}
 
 	/**
-	 * mthd for setting value of {@link MobileContract#SMSCount}
-	 * @param SMSCount
+	 * mthd for setting value of {@link MobileContract#smsCount}
+	 * @param smsCount
 	 */
-	public void setSMSCount(int SMSCount) {
-		this.SMSCount = SMSCount;
+	public void setSmsCount(final int smsCount) {
+		this.smsCount = smsCount;
 	}
 
 	/**
-	 * mthd for getting value of {@link MobileContract#GbCount}
+	 * mthd for getting value of {@link MobileContract#gbCount}
 	 * @return Contract Gb's count
 	 */
 	public float getGbCount() {
-		return GbCount;
+		return gbCount;
 	}
 
 	/**
-	 * mthd for setting value of {@link MobileContract#GbCount}
+	 * mthd for setting value of {@link MobileContract#gbCount}
 	 * @param gbCount
 	 */
-	public void setGbCount(float gbCount) {
-		GbCount = gbCount;
+	public void setGbCount(final float gbCount) {
+		this.gbCount = gbCount;
 	}
 
+	/**
+	 * toString mthd
+	 * @return MobileContract obj values
+	 */
 	@Override
 	public String toString() {
-		return "MobileContract{" +
-						"minutesCount=" + minutesCount +
-						", SMSCount=" + SMSCount +
-						", GbCount=" + GbCount +
-						'}';
+		return (
+			"MobileContract{"
+							+ "minutesCount="
+							+ minutesCount
+							+ ", SMSCount="
+							+ smsCount
+							+ ", GbCount="
+							+ gbCount
+							+ '}'
+		);
 	}
 }

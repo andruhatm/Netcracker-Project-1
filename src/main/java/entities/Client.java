@@ -1,6 +1,6 @@
-package Entities;
+package entities;
 
-import Entities.enums.Sex;
+import entities.enums.Sex;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -54,7 +54,16 @@ public class Client {
 	 * @param passportSeries passport series
 	 * @param passportId passport id
 	 */
-	public Client(int id, String name, String surname, String patronymic, LocalDate dateOfBirth, Sex sex, int passportSeries, int passportId) {
+	public Client(
+		final int id,
+		final String name,
+		final String surname,
+		final String patronymic,
+		final LocalDate dateOfBirth,
+		final Sex sex,
+		final int passportSeries,
+		final int passportId
+	) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -69,15 +78,17 @@ public class Client {
 	 * mthd for identifying Client's age using {@link Client#dateOfBirth}
 	 * @return Client's age
 	 */
-	public int getAge(){
-		return Period.between(dateOfBirth,LocalDate.now()).getYears();
+	public int getAge() {
+		return Period.between(dateOfBirth, LocalDate.now()).getYears();
 	}
 
 	/**
 	 * mthd for getting full client's passport info
 	 * @return full passport info
 	 */
-	public String getPassport(){return String.valueOf(getPassportSeries());}
+	public String getPassport() {
+		return String.valueOf(getPassportSeries());
+	}
 
 	/**
 	 * mthd for getting value of {@link Client#id}
@@ -91,7 +102,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#id}
 	 * @param id
 	 */
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -107,7 +118,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#name}
 	 * @param name
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -123,7 +134,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#surname}
 	 * @param surname
 	 */
-	public void setSurname(String surname) {
+	public void setSurname(final String surname) {
 		this.surname = surname;
 	}
 
@@ -139,7 +150,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#patronymic}
 	 * @param patronymic
 	 */
-	public void setPatronymic(String patronymic) {
+	public void setPatronymic(final String patronymic) {
 		this.patronymic = patronymic;
 	}
 
@@ -155,7 +166,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#dateOfBirth}
 	 * @param dateOfBirth
 	 */
-	public void setDateOfBirth(LocalDate dateOfBirth) {
+	public void setDateOfBirth(final LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -171,7 +182,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#sex}
 	 * @param sex
 	 */
-	public void setSex(Sex sex) {
+	public void setSex(final Sex sex) {
 		this.sex = sex;
 	}
 
@@ -187,7 +198,7 @@ public class Client {
 	 * mthd for setting value of {@link Client#passportSeries}
 	 * @param passportSeries
 	 */
-	public void setPassportSeries(int passportSeries) {
+	public void setPassportSeries(final int passportSeries) {
 		this.passportSeries = passportSeries;
 	}
 
@@ -203,22 +214,38 @@ public class Client {
 	 * mthd for setting value of {@link Client#passportId}
 	 * @param passportId
 	 */
-	public void setPassportId(int passportId) {
+	public void setPassportId(final int passportId) {
 		this.passportId = passportId;
 	}
 
+	/**
+	 * toString mthd
+	 * @return Client object values
+	 */
 	@Override
 	public String toString() {
-		return "Client{" +
-						"id=" + id +
-						", name='" + name + '\'' +
-						", surname='" + surname + '\'' +
-						", patronymic='" + patronymic + '\'' +
-						", dateOfBirth=" + dateOfBirth +
-						", sex=" + sex +
-						", passportSeries=" + passportSeries +
-						", passportId=" + passportId +
-						'}';
+		return (
+			"Client{"
+							+ "id="
+							+ id
+							+ ", name='"
+							+ name
+							+ '\''
+							+ ", surname='"
+							+ surname
+							+ '\''
+							+ ", patronymic='"
+							+ patronymic
+							+ '\''
+							+ ", dateOfBirth="
+							+ dateOfBirth
+							+ ", sex="
+							+ sex
+							+ ", passportSeries="
+							+ passportSeries
+							+ ", passportId="
+							+ passportId
+							+ '}'
+		);
 	}
 }
-

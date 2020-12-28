@@ -1,6 +1,5 @@
-package Entities;
+package entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -16,15 +15,15 @@ public class Contract {
 	/**
 	 * Contract start date
  	 */
-	LocalDate startingDate;
+	private LocalDate startingDate;
 	/**
 	 * Contract end date
 	 */
-	LocalDate finishingDate;
+	private LocalDate finishingDate;
 	/**
 	 * Client entity associated with Contract
 	 */
-	Client client;
+	private Client client;
 
 	/**
 	 * Constuctor - creating new instance of Contract
@@ -33,7 +32,7 @@ public class Contract {
 	 * @param finishingDate Contract finishing date
 	 * @param client Associated client entity
 	 */
-	public Contract(int id, LocalDate startingDate, LocalDate finishingDate, Client client) {
+	public Contract(final int id, final LocalDate startingDate, final LocalDate finishingDate, final Client client) {
 		this.id = id;
 		this.startingDate = startingDate;
 		this.finishingDate = finishingDate;
@@ -52,7 +51,7 @@ public class Contract {
 	 * mthd for setting value of {@link Contract#id}
 	 * @param id
 	 */
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -68,7 +67,7 @@ public class Contract {
 	 * mthd for setting value of {@link Contract#startingDate}
 	 * @param startingDate
 	 */
-	public void setStartingDate(LocalDate startingDate) {
+	public void setStartingDate(final LocalDate startingDate) {
 		this.startingDate = startingDate;
 	}
 
@@ -84,7 +83,7 @@ public class Contract {
 	 * mthd for setting value of {@link Contract#finishingDate}
 	 * @param finishingDate
 	 */
-	public void setFinishingDate(LocalDate finishingDate) {
+	public void setFinishingDate(final LocalDate finishingDate) {
 		this.finishingDate = finishingDate;
 	}
 
@@ -100,17 +99,25 @@ public class Contract {
 	 * mthd for setting value of {@link Contract#client}
 	 * @param client
 	 */
-	public void setClient(Client client) {
+	public void setClient(final Client client) {
 		this.client = client;
 	}
 
+	/**
+	 * toString mthd
+	 * @return Contract obj values
+	 */
 	@Override
 	public String toString() {
-		return "Contract{" +
-						"id=" + id +
-						", startingDate=" + startingDate +
-						", finishingDate=" + finishingDate +
-						", client=" + client.toString() +
-						'}';
+		return "Contract{"
+						+ "id="
+						+ id
+						+ ", startingDate="
+						+ startingDate
+						+ ", finishingDate="
+						+ finishingDate
+						+ ", client="
+						+ client.toString()
+						+ '}';
 	}
 }

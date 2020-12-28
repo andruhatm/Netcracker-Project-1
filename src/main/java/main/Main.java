@@ -14,8 +14,9 @@ public class Main {
 	 * Starting mthd of an application
 	 * @param args of cmd line
 	 */
-	public static void main(@NotNull String[] args) {
-		ContractRepo repo = new CsvContractRepoBuilder().build("src/main/resources/netcracker lab3.csv");
+	public static void main(@NotNull final String[] args) {
+		ContractRepo repo = new CsvContractRepoBuilder()
+		.build("src/main/resources/netcracker lab3.csv");
 		repo.outputContractRepo();
 	}
 }

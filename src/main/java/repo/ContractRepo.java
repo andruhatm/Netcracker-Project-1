@@ -1,24 +1,23 @@
 package repo;
 
-import Entities.Contract;
-import Entities.contracts.InternetContract;
-import Entities.contracts.MobileContract;
-import Entities.contracts.TVContract;
+import entities.Contract;
+import entities.contracts.InternetContract;
+import entities.contracts.MobileContract;
+import entities.contracts.TVContract;
+import java.util.Comparator;
+import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import repo.sorters.BubbleSorter;
 import repo.sorters.Sorter;
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 /**
  * Repository class for various Contracts
  * @author andruha.tm
  * @version 1.0
  */
-public final class ContractRepo implements Repo<Contract>{
-
-	final static Logger logger = Logger.getLogger(ContractRepo.class);
+public final class ContractRepo implements Repo<Contract> {
+	static final Logger logger = Logger.getLogger(ContractRepo.class);
 
 	/**
 	 * Current Contract Array pointer
@@ -47,12 +46,12 @@ public final class ContractRepo implements Repo<Contract>{
 	/**
 	 * mthd for expanding array size by creating new with bigger length
 	 */
-	private void expand(){
+	private void expand() {
 		logger.trace("expanding");
 		logger.debug("Expanding Array");
-		Contract[] nRepo = new Contract[repo.length+10];
-		for(int i=0;i<repo.length;i++){
-			nRepo[i]=repo[i];
+		Contract[] nRepo = new Contract[repo.length + 10];
+		for (int i = 0; i < repo.length; i++) {
+			nRepo[i] = repo[i];
 		}
 		repo = nRepo;
 	}
@@ -62,21 +61,21 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @param contract Contract to add
 	 */
 	@Override
-	public void add(@NotNull Contract contract){
-//		boolean check = true;
-//
-//		for(int i=0; i<pointer;i++){
-//			if (repo[i].getId() == contract.getId()) {
-//				check = false;
-//			}
-//		}
+	public void add(@NotNull final Contract contract) {
+		//		boolean check = true;
+		//
+		//		for(int i=0; i<pointer;i++){
+		//			if (repo[i].getId() == contract.getId()) {
+		//				check = false;
+		//			}
+		//		}
 
-		if(pointer==repo.length-1){
+		if (pointer == repo.length - 1) {
 			expand();
 		}
-		if(checkContractId(contract.getId())){
+		if (checkContractId(contract.getId())) {
 			logger.debug("Moving pointer");
-			repo[pointer]=contract;
+			repo[pointer] = contract;
 			pointer++;
 		}
 	}
@@ -87,11 +86,12 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @return Contract instance
 	 */
 	@Override
-	public Contract get(int contractId){
+	public Contract get(final int contractId) {
 		logger.debug("Choosing Contract instance to return");
-		for (int i=0;i<pointer;i++){
-			if(repo[i].getId()==contractId)
+		for (int i = 0; i < pointer; i++) {
+			if (repo[i].getId() == contractId) {
 				return repo[i];
+			}
 		}
 		return null;
 	}
@@ -102,17 +102,17 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @return bool success result
 	 */
 	@Override
-	public boolean delete(int contractId){
-		if(contractId>repo.length-1){
+	public boolean delete(final int contractId) {
+		if (contractId > repo.length - 1) {
 			logger.debug("Received contract id is out of Repo length");
 			return false;
 		} else {
-			for(int i=0;i<pointer;i++){
-				if(repo[i].getId() == contractId){
-					repo[i]=null;
+			for (int i = 0; i < pointer; i++) {
+				if (repo[i].getId() == contractId) {
+					repo[i] = null;
 					pointer--;
-					for(int j=i;j<repo.length-1;j++){
-						repo[j]=repo[j+1];
+					for (int j = i; j < repo.length - 1; j++) {
+						repo[j] = repo[j + 1];
 					}
 					//outputRepo();
 				}
@@ -126,8 +126,8 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @param comparator custom filtering
 	 */
 	@Override
-	public void sortBy(Comparator<Contract> comparator) {
-		repo = sorter.sort(getRepo(),comparator);
+	public void sortBy(final Comparator<Contract> comparator) {
+		repo = sorter.sort(getRepo(), comparator);
 		//outputRepo();
 	}
 
@@ -137,11 +137,11 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @return new Repo with filtered obj's
 	 */
 	@Override
-	public ContractRepo searchBy(Predicate<Contract> predicate) {
+	public ContractRepo searchBy(final Predicate<Contract> predicate) {
 		ContractRepo result = new ContractRepo();
 
-		for (int i=0;i<pointer;i++){
-			if(repo[i]!=null) {
+		for (int i = 0; i < pointer; i++) {
+			if (repo[i] != null) {
 				if (predicate.test(repo[i])) {
 					result.add(repo[i]);
 				}
@@ -154,7 +154,7 @@ public final class ContractRepo implements Repo<Contract>{
 	 * mthd for getting Array of Contracts length
 	 * @return repo length
 	 */
-	public int getLength(){
+	public int getLength() {
 		return repo.length;
 	}
 
@@ -164,8 +164,10 @@ public final class ContractRepo implements Repo<Contract>{
 	 */
 	@Override
 	public Contract[] getRepo() {
-		Contract[] repository =  new Contract[pointer];
-		if (pointer >= 0) System.arraycopy(repo, 0, repository, 0, pointer);
+		Contract[] repository = new Contract[pointer];
+		if (pointer >= 0) {
+			System.arraycopy(repo, 0, repository, 0, pointer);
+		}
 		return repository;
 	}
 
@@ -173,8 +175,8 @@ public final class ContractRepo implements Repo<Contract>{
 	 * mthd for current Repo state output
 	 */
 	@Override
-	public void outputRepo(){
-		for (int i=0;i<pointer;i++){
+	public void outputRepo() {
+		for (int i = 0; i < pointer; i++) {
 			System.out.println(repo[i].toString());
 		}
 		System.out.println("--------");
@@ -183,15 +185,13 @@ public final class ContractRepo implements Repo<Contract>{
 	/**
 	 * mthd for logging Contract Type's unique specs
 	 */
-	public void outputContractRepo(){
-		for (int i=0;i<pointer;i++){
-			if (repo[i].getClass().equals(InternetContract.class)){
+	public void outputContractRepo() {
+		for (int i = 0; i < pointer; i++) {
+			if (repo[i].getClass().equals(InternetContract.class)) {
 				System.out.println(repo[i].toString());
-			}
-			else if (repo[i].getClass().equals(MobileContract.class)){
+			} else if (repo[i].getClass().equals(MobileContract.class)) {
 				System.out.println(repo[i].toString());
-			}
-			else if (repo[i].getClass().equals(TVContract.class)){
+			} else if (repo[i].getClass().equals(TVContract.class)) {
 				System.out.println(repo[i].toString());
 			}
 		}
@@ -203,10 +203,10 @@ public final class ContractRepo implements Repo<Contract>{
 	 * @param id Contract id to check
 	 * @return true if no contracts in repo with such id, otherwise false
 	 */
-	public boolean checkContractId(int id) {
+	public boolean checkContractId(final int id) {
 		boolean check = true;
 
-		for(int i=0; i<pointer;i++){
+		for (int i = 0; i < pointer; i++) {
 			if (repo[i].getId() == id) {
 				logger.debug("Contract already exists");
 				check = false;
@@ -223,5 +223,4 @@ public final class ContractRepo implements Repo<Contract>{
 	public int getPointer() {
 		return this.pointer;
 	}
-
 }

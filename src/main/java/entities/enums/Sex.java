@@ -1,4 +1,4 @@
-package Entities.enums;
+package entities.enums;
 
 /**
  * Enum represents Genders available

@@ -19,7 +19,7 @@ public class Message {
 	 * Constructor for creating new instance of Message
 	 * @param status validation status
 	 */
-	public Message(ValidateStatus status) {
+	public Message(final ValidateStatus status) {
 		this.status = status;
 	}
 
@@ -28,7 +28,7 @@ public class Message {
 	 * @param message validation error msg
 	 * @param status validation status
 	 */
-	public Message(String message, ValidateStatus status) {
+	public Message(final String message, final ValidateStatus status) {
 		super();
 		this.message = message;
 		this.status = status;
@@ -46,7 +46,7 @@ public class Message {
 	 * to set message field
 	 * @param message msg to set
 	 */
-	public void setMessage(String message) {
+	public void setMessage(final String message) {
 		this.message = message;
 	}
 
@@ -62,15 +62,16 @@ public class Message {
 	 * to set validation status
 	 * @param status status to set
 	 */
-	public void setStatus(ValidateStatus status) {
+	public void setStatus(final ValidateStatus status) {
 		this.status = status;
 	}
 
+	/**
+	 * toString mthd
+	 * @return Message obj values
+	 */
 	@Override
 	public String toString() {
-		return "Message{" +
-						"message='" + message + '\'' +
-						", status=" + status +
-						'}';
+		return "Message{" + "message='" + message + '\'' + ", status=" + status + '}';
 	}
 }
