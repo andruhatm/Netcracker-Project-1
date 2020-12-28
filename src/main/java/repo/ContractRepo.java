@@ -4,6 +4,7 @@ import Entities.Contract;
 import Entities.contracts.InternetContract;
 import Entities.contracts.MobileContract;
 import Entities.contracts.TVContract;
+import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import repo.sorters.BubbleSorter;
 import repo.sorters.Sorter;
@@ -16,6 +17,8 @@ import java.util.function.Predicate;
  * @version 1.0
  */
 public final class ContractRepo implements Repo<Contract>{
+
+	final static Logger logger = Logger.getLogger(ContractRepo.class);
 
 	/**
 	 * Current Contract Array pointer
@@ -36,6 +39,7 @@ public final class ContractRepo implements Repo<Contract>{
 	 * Constructor - creating new instance of Repository
 	 */
 	public ContractRepo() {
+		logger.debug("Initializing Contract array");
 		repo = new Contract[20];
 		sorter = new BubbleSorter<>();
 	}
@@ -44,6 +48,8 @@ public final class ContractRepo implements Repo<Contract>{
 	 * mthd for expanding array size by creating new with bigger length
 	 */
 	private void expand(){
+		logger.trace("expanding");
+		logger.debug("Expanding Array");
 		Contract[] nRepo = new Contract[repo.length+10];
 		for(int i=0;i<repo.length;i++){
 			nRepo[i]=repo[i];
@@ -69,6 +75,7 @@ public final class ContractRepo implements Repo<Contract>{
 			expand();
 		}
 		if(checkContractId(contract.getId())){
+			logger.debug("Moving pointer");
 			repo[pointer]=contract;
 			pointer++;
 		}
@@ -81,6 +88,7 @@ public final class ContractRepo implements Repo<Contract>{
 	 */
 	@Override
 	public Contract get(int contractId){
+		logger.debug("Choosing Contract instance to return");
 		for (int i=0;i<pointer;i++){
 			if(repo[i].getId()==contractId)
 				return repo[i];
@@ -96,6 +104,7 @@ public final class ContractRepo implements Repo<Contract>{
 	@Override
 	public boolean delete(int contractId){
 		if(contractId>repo.length-1){
+			logger.debug("Received contract id is out of Repo length");
 			return false;
 		} else {
 			for(int i=0;i<pointer;i++){
@@ -199,6 +208,7 @@ public final class ContractRepo implements Repo<Contract>{
 
 		for(int i=0; i<pointer;i++){
 			if (repo[i].getId() == id) {
+				logger.debug("Contract already exists");
 				check = false;
 				break;
 			}

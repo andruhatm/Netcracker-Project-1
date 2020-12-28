@@ -1,8 +1,13 @@
 package repo.sorters;
 
+import org.apache.log4j.Logger;
+
 import java.util.Comparator;
 
 public class SelectionSorter<T> implements Sorter<T>{
+
+	final static Logger logger = Logger.getLogger(SelectionSorter.class);
+
 	@Override
 	public T[] sort(T[] array, Comparator<T> comparator) {
 		for(int i=0;i<array.length;i++){

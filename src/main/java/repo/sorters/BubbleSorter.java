@@ -1,8 +1,14 @@
 package repo.sorters;
 
+import org.apache.log4j.Logger;
+import repo.ContractRepo;
+
 import java.util.Comparator;
 
 public class BubbleSorter<T> implements Sorter<T>{
+
+	final static Logger logger = Logger.getLogger(BubbleSorter.class);
+
 	@Override
 	public T[] sort(T[] elements, Comparator<T> comparator) {
 		for(int i=0;i<elements.length;i++) {

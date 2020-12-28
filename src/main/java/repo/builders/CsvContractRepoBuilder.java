@@ -11,6 +11,7 @@ import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import org.apache.log4j.Logger;
 import repo.ContractRepo;
 import repo.validators.Message;
 import repo.validators.ValidateStatus;
@@ -34,6 +35,8 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 public class CsvContractRepoBuilder {
+
+	final static Logger logger = Logger.getLogger(CsvContractRepoBuilder.class);
 
 	/**
 	 * repo filed to return
@@ -84,8 +87,10 @@ public class CsvContractRepoBuilder {
 				}
 
 				if(repo.checkContractId(Integer.parseInt(line[1]))){
+					logger.debug("Contract with such id already exists");
 					Client currentClient = null;
 					if(checkClient(line[7],line[8])){
+						logger.debug("Creating new Client Instance");
 						String[] fio = line[4].split(" ");
 						String[] dateOfBirth = line[5].split("-");
 						Client client = new Client(
@@ -183,6 +188,7 @@ public class CsvContractRepoBuilder {
 				}
 			}
 		} catch (IOException e) {
+			logger.fatal("Error opening file",e);
 			e.printStackTrace();
 		}
 
@@ -204,13 +210,16 @@ public class CsvContractRepoBuilder {
 		for (Validator<Contract> validator: validators){
 
 			if(validator.getAppliableClass().equals(contract.getClass())){
+
 				if(validator.validate(contract).getStatus() == (ValidateStatus.WARNING)){
+					logger.warn("Contract applicable to Contract.class didn't pass validation");
 					return false;
 				}
 			}
 
 			else if (validator.getAppliableClass().equals(Contract.class)){
 				if(validator.validate(contract).getStatus() == (ValidateStatus.WARNING)){
+					logger.warn("Contract appliabel to ? extends Contract.class didn't pass validation");
 					return false;
 				}
 			}
