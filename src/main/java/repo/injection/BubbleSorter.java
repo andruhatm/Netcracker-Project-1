@@ -1,8 +1,8 @@
-package repo.sorters;
+package repo.injection;
 
 import java.util.Comparator;
 import org.apache.log4j.Logger;
-import repo.ContractRepo;
+import repo.sorters.Sorter;
 
 public class BubbleSorter<T> implements Sorter<T> {
 	static final Logger logger = Logger.getLogger(BubbleSorter.class);

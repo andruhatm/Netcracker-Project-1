@@ -7,13 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 import repo.ContractRepo;
 import repo.builders.CsvContractRepoBuilder;
+import repo.injection.Injector;
 import repo.validators.Validator;
 
 public class CsvLoaderTest {
 	/**
+	 * Injector field
+	 */
+	Injector injector = new Injector();
+
+	/**
 	 * Contract repo field for tests
 	 */
-	public ContractRepo repo = new ContractRepo();
+	public ContractRepo repo;
 
 	/**
 	 * validators field
@@ -21,8 +27,10 @@ public class CsvLoaderTest {
 	private static final List<Validator<Contract>> validators = new ArrayList<>();
 
 	@Before
-	public void setUp() {
-		repo = new CsvContractRepoBuilder().build("src/test/java/testCSV.csv");
+	public void setUp() throws IllegalAccessException {
+		repo = Injector.inject(new ContractRepo());
+		CsvContractRepoBuilder builder = Injector.inject(new CsvContractRepoBuilder());
+		repo = builder.build("src/test/java/testCSV.csv");
 		repo.outputRepo();
 	}
 

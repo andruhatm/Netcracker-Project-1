@@ -12,8 +12,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import repo.ContractRepo;
-import repo.sorters.BubbleSorter;
-import repo.sorters.SelectionSorter;
+import repo.injection.BubbleSorter;
+import repo.injection.Injector;
+import repo.sorters.impl.SelectionSorter;
 import repo.sorters.Sorter;
 import repo.sorters.comparators.FinishingDateComparator;
 
@@ -34,9 +35,18 @@ public class SortTest {
 	public Sorter<Integer> sorter1 = new SelectionSorter<>();
 
 	/**
+	 * Injector field
+	 */
+	Injector injector = new Injector();
+
+	/**
 	 * Contract repo field for tests
 	 */
-	public ContractRepo repo = new ContractRepo();
+	//public ContractRepo repo = new ContractRepo();
+	public ContractRepo repo = injector.inject(new ContractRepo());
+
+	public SortTest() throws IllegalAccessException {
+	}
 
 	/**
 	 * sets up test environment

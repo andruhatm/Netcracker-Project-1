@@ -1,7 +1,8 @@
-package repo.sorters;
+package repo.sorters.impl;
 
 import java.util.Comparator;
 import org.apache.log4j.Logger;
+import repo.sorters.Sorter;
 
 public class SelectionSorter<T> implements Sorter<T> {
 	static final Logger logger = Logger.getLogger(SelectionSorter.class);

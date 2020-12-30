@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
-import repo.sorters.BubbleSorter;
+import repo.injection.annotations.MyInject;
 import repo.sorters.Sorter;
 
 /**
@@ -32,6 +32,7 @@ public final class ContractRepo implements Repo<Contract> {
 	/**
 	 * Sorter field
 	 */
+	@MyInject
 	private Sorter<Contract> sorter;
 
 	/**
@@ -40,7 +41,7 @@ public final class ContractRepo implements Repo<Contract> {
 	public ContractRepo() {
 		logger.debug("Initializing Contract array");
 		repo = new Contract[20];
-		sorter = new BubbleSorter<>();
+//		sorter = new BubbleSorter<>();
 	}
 
 	/**

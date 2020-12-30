@@ -17,14 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import repo.ContractRepo;
+import repo.injection.annotations.MyInject;
 import repo.validators.ValidateStatus;
 import repo.validators.Validator;
-import repo.validators.impl.base.AgeValidator;
-import repo.validators.impl.base.ContractPeriodValidator;
-import repo.validators.impl.base.FioValidator;
-import repo.validators.impl.base.PassportValidator;
-import repo.validators.impl.internet.DataCountValidator;
-import repo.validators.impl.mobile.TrafficDataValidator;
 
 /**
  * RepoBuilderClass
@@ -47,16 +42,8 @@ public class CsvContractRepoBuilder {
 	/**
 	 * validator list field
 	 */
-	private static final List<Validator<Contract>> validators = new ArrayList<>();
-
-	static {
-		validators.add(new ContractPeriodValidator());
-		validators.add(new FioValidator());
-		validators.add(new AgeValidator());
-		validators.add(new PassportValidator());
-		validators.add(new DataCountValidator());
-		validators.add(new TrafficDataValidator());
-	}
+	@MyInject(targetType = Validator.class)
+	private final List<Validator<Contract>> validators = new ArrayList<>();
 
 	/**
 	 * builds repo from file by {@link CSVParser} and {@link CSVReader}
