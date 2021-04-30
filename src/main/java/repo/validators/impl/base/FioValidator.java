@@ -17,12 +17,12 @@ public class FioValidator implements Validator<Contract> {
 	@Override
 	public Message validate(final Contract o) {
 		if (
-			o.getClient().getName().length() > 0
-							&& o.getClient().getName().length() < 15
-							&& o.getClient().getSurname().length() > 0
-							&& o.getClient().getSurname().length() < 15
-							&& o.getClient().getPatronymic().length() > 0
-							&& o.getClient().getPatronymic().length() < 15
+			o.getClient().getName().length() > 0 &&
+			o.getClient().getName().length() < 15 &&
+			o.getClient().getSurname().length() > 0 &&
+			o.getClient().getSurname().length() < 15 &&
+			o.getClient().getPatronymic().length() > 0 &&
+			o.getClient().getPatronymic().length() < 15
 		) {
 			return new Message(ValidateStatus.OK);
 		} else {

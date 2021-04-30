@@ -19,9 +19,9 @@ public class TrafficDataValidator implements Validator<Contract> {
 	public Message validate(final Contract o) {
 		MobileContract contract = (MobileContract) o;
 		if (
-			contract.getGbCount() < 0
-							|| contract.getMinutesCount() < 0
-							|| contract.getSmsCount() < 0
+			contract.getGbCount() < 0 ||
+			contract.getMinutesCount() < 0 ||
+			contract.getSmsCount() < 0
 		) {
 			logger.warn("Illegal data count");
 			return new Message("Illegal data count", ValidateStatus.WARNING);

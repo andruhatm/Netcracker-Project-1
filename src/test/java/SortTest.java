@@ -14,9 +14,9 @@ import org.junit.Test;
 import repo.ContractRepo;
 import repo.injection.BubbleSorter;
 import repo.injection.Injector;
-import repo.sorters.impl.SelectionSorter;
 import repo.sorters.Sorter;
 import repo.sorters.comparators.FinishingDateComparator;
+import repo.sorters.impl.SelectionSorter;
 
 /**
  * Class for Sort functions Tests
@@ -45,8 +45,7 @@ public class SortTest {
 	//public ContractRepo repo = new ContractRepo();
 	public ContractRepo repo = injector.inject(new ContractRepo());
 
-	public SortTest() throws IllegalAccessException {
-	}
+	public SortTest() throws IllegalAccessException {}
 
 	/**
 	 * sets up test environment

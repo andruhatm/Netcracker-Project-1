@@ -13,10 +13,10 @@ public class Main {
 
 	/**
 	 * Starting mthd of an application
+	 *
 	 * @param args of cmd line
 	 */
 	public static void main(@NotNull final String[] args) throws IllegalAccessException {
-
 		Injector injector = new Injector();
 
 		CsvContractRepoBuilder builder = injector.inject(new CsvContractRepoBuilder());

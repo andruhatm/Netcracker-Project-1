@@ -1,11 +1,13 @@
 package entities;
 
 import entities.enums.Sex;
+
 import java.time.LocalDate;
 import java.time.Period;
 
 /**
  * Entity-class of Client
+ *
  * @author andruha.tm
  * @version 1.0
  */
@@ -45,24 +47,25 @@ public class Client {
 
 	/**
 	 * Constructor - creates new instance of Client
-	 * @param id unique identifier
-	 * @param name name
-	 * @param surname surname
-	 * @param patronymic patronymic
-	 * @param dateOfBirth date of birth (yyyy-mm-dd)
-	 * @param sex sex
+	 *
+	 * @param id             unique identifier
+	 * @param name           name
+	 * @param surname        surname
+	 * @param patronymic     patronymic
+	 * @param dateOfBirth    date of birth (yyyy-mm-dd)
+	 * @param sex            sex
 	 * @param passportSeries passport series
-	 * @param passportId passport id
+	 * @param passportId     passport id
 	 */
 	public Client(
-		final int id,
-		final String name,
-		final String surname,
-		final String patronymic,
-		final LocalDate dateOfBirth,
-		final Sex sex,
-		final int passportSeries,
-		final int passportId
+					final int id,
+					final String name,
+					final String surname,
+					final String patronymic,
+					final LocalDate dateOfBirth,
+					final Sex sex,
+					final int passportSeries,
+					final int passportId
 	) {
 		this.id = id;
 		this.name = name;
@@ -76,6 +79,7 @@ public class Client {
 
 	/**
 	 * mthd for identifying Client's age using {@link Client#dateOfBirth}
+	 *
 	 * @return Client's age
 	 */
 	public int getAge() {
@@ -84,6 +88,7 @@ public class Client {
 
 	/**
 	 * mthd for getting full client's passport info
+	 *
 	 * @return full passport info
 	 */
 	public String getPassport() {
@@ -92,6 +97,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#id}
+	 *
 	 * @return Client's id
 	 */
 	public int getId() {
@@ -100,6 +106,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#id}
+	 *
 	 * @param id
 	 */
 	public void setId(final int id) {
@@ -108,6 +115,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#name}
+	 *
 	 * @return Client's name
 	 */
 	public String getName() {
@@ -116,6 +124,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#name}
+	 *
 	 * @param name
 	 */
 	public void setName(final String name) {
@@ -124,6 +133,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#surname}
+	 *
 	 * @return Client's surname
 	 */
 	public String getSurname() {
@@ -132,6 +142,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#surname}
+	 *
 	 * @param surname
 	 */
 	public void setSurname(final String surname) {
@@ -140,6 +151,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#patronymic}
+	 *
 	 * @return Client's patronymic
 	 */
 	public String getPatronymic() {
@@ -148,6 +160,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#patronymic}
+	 *
 	 * @param patronymic
 	 */
 	public void setPatronymic(final String patronymic) {
@@ -156,6 +169,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#dateOfBirth}
+	 *
 	 * @return Client's date of birth
 	 */
 	public LocalDate getDateOfBirth() {
@@ -164,6 +178,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#dateOfBirth}
+	 *
 	 * @param dateOfBirth
 	 */
 	public void setDateOfBirth(final LocalDate dateOfBirth) {
@@ -172,6 +187,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#sex}
+	 *
 	 * @return Client's sex
 	 */
 	public Sex getSex() {
@@ -180,6 +196,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#sex}
+	 *
 	 * @param sex
 	 */
 	public void setSex(final Sex sex) {
@@ -188,6 +205,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#passportSeries}
+	 *
 	 * @return Client's passportSeries
 	 */
 	public int getPassportSeries() {
@@ -196,6 +214,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#passportSeries}
+	 *
 	 * @param passportSeries
 	 */
 	public void setPassportSeries(final int passportSeries) {
@@ -204,6 +223,7 @@ public class Client {
 
 	/**
 	 * mthd for getting value of {@link Client#passportId}
+	 *
 	 * @return Client's passportId
 	 */
 	public int getPassportId() {
@@ -212,6 +232,7 @@ public class Client {
 
 	/**
 	 * mthd for setting value of {@link Client#passportId}
+	 *
 	 * @param passportId
 	 */
 	public void setPassportId(final int passportId) {
@@ -220,32 +241,33 @@ public class Client {
 
 	/**
 	 * toString mthd
+	 *
 	 * @return Client object values
 	 */
 	@Override
 	public String toString() {
 		return (
-			"Client{"
-							+ "id="
-							+ id
-							+ ", name='"
-							+ name
-							+ '\''
-							+ ", surname='"
-							+ surname
-							+ '\''
-							+ ", patronymic='"
-							+ patronymic
-							+ '\''
-							+ ", dateOfBirth="
-							+ dateOfBirth
-							+ ", sex="
-							+ sex
-							+ ", passportSeries="
-							+ passportSeries
-							+ ", passportId="
-							+ passportId
-							+ '}'
+						"Client{" +
+										"id=" +
+										id +
+										", name='" +
+										name +
+										'\'' +
+										", surname='" +
+										surname +
+										'\'' +
+										", patronymic='" +
+										patronymic +
+										'\'' +
+										", dateOfBirth=" +
+										dateOfBirth +
+										", sex=" +
+										sex +
+										", passportSeries=" +
+										passportSeries +
+										", passportId=" +
+										passportId +
+										'}'
 		);
 	}
 }

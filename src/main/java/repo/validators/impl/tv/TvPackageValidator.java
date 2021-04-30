@@ -19,9 +19,7 @@ public class TvPackageValidator implements Validator<Contract> {
 	@Override
 	public Message validate(final Contract o) {
 		TVContract contract = (TVContract) o;
-		if (
-			contract.getaPackage().getId() < 0
-		) {
+		if (contract.getaPackage().getId() < 0) {
 			logger.warn("Illegal package state");
 			return new Message("Illegal package state", ValidateStatus.WARNING);
 		}

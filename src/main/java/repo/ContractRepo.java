@@ -17,6 +17,7 @@ import repo.sorters.Sorter;
  * @version 1.0
  */
 public final class ContractRepo implements Repo<Contract> {
+
 	static final Logger logger = Logger.getLogger(ContractRepo.class);
 
 	/**
@@ -41,7 +42,7 @@ public final class ContractRepo implements Repo<Contract> {
 	public ContractRepo() {
 		logger.debug("Initializing Contract array");
 		repo = new Contract[20];
-//		sorter = new BubbleSorter<>();
+		//		sorter = new BubbleSorter<>();
 	}
 
 	/**
@@ -95,6 +96,15 @@ public final class ContractRepo implements Repo<Contract> {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * method for getting Contract instance by id
+	 * @param id unique id
+	 * @return Contract obj
+	 */
+	public Contract getById(final int id){
+		return repo[id];
 	}
 
 	/**
@@ -224,4 +234,5 @@ public final class ContractRepo implements Repo<Contract> {
 	public int getPointer() {
 		return this.pointer;
 	}
+
 }

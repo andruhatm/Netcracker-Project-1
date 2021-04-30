@@ -3,6 +3,7 @@ package entities.contracts;
 import entities.Client;
 import entities.Contract;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Entity-class of Mobile Ethernet Contract
@@ -46,6 +47,20 @@ public class MobileContract extends Contract {
 		this.minutesCount = minutesCount;
 		this.smsCount = smsCount;
 		this.gbCount = gbCount;
+	}
+
+	public MobileContract(int id, String startingDate, String finishingDate, Client client, int minutesCount, int smsCount, int gbCount) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate start = LocalDate.parse(startingDate, formatter);
+		LocalDate end = LocalDate.parse(finishingDate, formatter);
+
+		this.setGbCount(gbCount);
+		this.setMinutesCount(minutesCount);
+		this.setClient(client);
+		this.setStartingDate(start);
+		this.setFinishingDate(end);
+		this.setId(id);
+		this.setSmsCount(smsCount);
 	}
 
 	/**
@@ -103,14 +118,14 @@ public class MobileContract extends Contract {
 	@Override
 	public String toString() {
 		return (
-			"MobileContract{"
-							+ "minutesCount="
-							+ minutesCount
-							+ ", SMSCount="
-							+ smsCount
-							+ ", GbCount="
-							+ gbCount
-							+ '}'
+			"MobileContract{" +
+			"minutesCount=" +
+			minutesCount +
+			", SMSCount=" +
+			smsCount +
+			", GbCount=" +
+			gbCount +
+			'}'
 		);
 	}
 }

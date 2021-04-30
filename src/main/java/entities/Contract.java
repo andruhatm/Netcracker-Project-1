@@ -14,7 +14,7 @@ public class Contract {
 	private int id;
 	/**
 	 * Contract start date
- 	 */
+	 */
 	private LocalDate startingDate;
 	/**
 	 * Contract end date
@@ -25,6 +25,9 @@ public class Contract {
 	 */
 	private Client client;
 
+	public Contract(){
+	}
+
 	/**
 	 * Constuctor - creating new instance of Contract
 	 * @param id id
@@ -32,7 +35,12 @@ public class Contract {
 	 * @param finishingDate Contract finishing date
 	 * @param client Associated client entity
 	 */
-	public Contract(final int id, final LocalDate startingDate, final LocalDate finishingDate, final Client client) {
+	public Contract(
+		final int id,
+		final LocalDate startingDate,
+		final LocalDate finishingDate,
+		final Client client
+	) {
 		this.id = id;
 		this.startingDate = startingDate;
 		this.finishingDate = finishingDate;
@@ -109,15 +117,17 @@ public class Contract {
 	 */
 	@Override
 	public String toString() {
-		return "Contract{"
-						+ "id="
-						+ id
-						+ ", startingDate="
-						+ startingDate
-						+ ", finishingDate="
-						+ finishingDate
-						+ ", client="
-						+ client.toString()
-						+ '}';
+		return (
+			"Contract{" +
+			"id=" +
+			id +
+			", startingDate=" +
+			startingDate +
+			", finishingDate=" +
+			finishingDate +
+			", client=" +
+			client.toString() +
+			'}'
+		);
 	}
 }

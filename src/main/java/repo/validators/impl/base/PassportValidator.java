@@ -17,8 +17,8 @@ public class PassportValidator implements Validator<Contract> {
 	@Override
 	public Message validate(final Contract o) {
 		if (
-			String.valueOf(o.getClient().getPassportId()).length() != 6
-							|| String.valueOf(o.getClient().getPassportSeries()).length() != 4
+			String.valueOf(o.getClient().getPassportId()).length() != 6 ||
+			String.valueOf(o.getClient().getPassportSeries()).length() != 4
 		) {
 			logger.warn("Illegal Passport id or Series");
 			return new Message("Illegal Passport id or Series", ValidateStatus.WARNING);

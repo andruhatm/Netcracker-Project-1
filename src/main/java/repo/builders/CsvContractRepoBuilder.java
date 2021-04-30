@@ -217,8 +217,8 @@ public class CsvContractRepoBuilder {
 		Client client1 = null;
 		for (Client client : clients) {
 			if (
-				client.getPassportSeries() == Integer.parseInt(id)
-								&& client.getPassportId() == Integer.parseInt(number)
+				client.getPassportSeries() == Integer.parseInt(id) &&
+				client.getPassportId() == Integer.parseInt(number)
 			) {
 				client1 = client;
 				break;
@@ -237,8 +237,8 @@ public class CsvContractRepoBuilder {
 		boolean check = true;
 		for (Client client : clients) {
 			if (
-				client.getPassportSeries() == Integer.parseInt(id)
-								&& client.getPassportId() == Integer.parseInt(number)
+				client.getPassportSeries() == Integer.parseInt(id) &&
+				client.getPassportId() == Integer.parseInt(number)
 			) {
 				check = false;
 				break;

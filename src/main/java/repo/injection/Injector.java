@@ -1,13 +1,13 @@
 package repo.injection;
 
-import repo.injection.annotations.Configuration;
-import repo.injection.annotations.MyInject;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import repo.injection.annotations.Configuration;
+import repo.injection.annotations.MyInject;
 
 /**
  * Injector class to analyze object fields by {@link MyInject} annotation
@@ -15,15 +15,16 @@ import java.util.Objects;
  * @author andruha.tm
  * @version 1.0
  */
-@Configuration(basePackages = {
-				"repo.validators.impl.base",
-				"repo.validators.impl.internet",
-				"repo.validators.impl.mobile",
-				"repo.validators.impl.tv",
-				"repo.sorters.impl"
-})
+@Configuration(
+	basePackages = {
+		"repo.validators.impl.base",
+		"repo.validators.impl.internet",
+		"repo.validators.impl.mobile",
+		"repo.validators.impl.tv",
+		"repo.sorters.impl"
+	}
+)
 public class Injector {
-
 	/**
 	 * List of objects from packages
 	 */
@@ -40,20 +41,35 @@ public class Injector {
 			for (String packagePath : configuration.basePackages()) {
 				packagePath = packagePath.replace(".", "/");
 
-				try (DataInputStream dataInputStream = new DataInputStream((InputStream) Objects.requireNonNull(
-								this.getClass().getClassLoader().getResource(packagePath)).getContent())) {
-					BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(dataInputStream));
+				try (
+					DataInputStream dataInputStream = new DataInputStream(
+						(InputStream) Objects
+							.requireNonNull(this.getClass().getClassLoader().getResource(packagePath))
+							.getContent()
+					)
+				) {
+					BufferedReader bufferedReader = new BufferedReader(
+						new InputStreamReader(dataInputStream)
+					);
 					String line = "";
 					while ((line = bufferedReader.readLine()) != null) {
 						if (line.endsWith(".class")) {
-							String className = packagePath.replace("/", ".") + "."
-											+ line.substring(0, line.length() - 6);
+							String className =
+								packagePath.replace("/", ".") +
+								"." +
+								line.substring(0, line.length() - 6);
 							System.out.println(className);
 							objectList.add(Class.forName(className).getConstructor().newInstance());
 						}
 					}
-				} catch (IOException | InstantiationException | InvocationTargetException | NoSuchMethodException
-								| ClassNotFoundException | IllegalAccessException e) {
+				} catch (
+					IOException
+					| InstantiationException
+					| InvocationTargetException
+					| NoSuchMethodException
+					| ClassNotFoundException
+					| IllegalAccessException e
+				) {
 					System.out.println("Class not found");
 				}
 			}
@@ -77,7 +93,9 @@ public class Injector {
 				if (field.getType().getName().contains("java.util.List")) {
 					MyInject myInject = field.getAnnotation(MyInject.class);
 					for (Object object : objectList) {
-						if (object != null && myInject.targetType().isAssignableFrom(object.getClass())) {
+						if (
+							object != null && myInject.targetType().isAssignableFrom(object.getClass())
+						) {
 							classForInjection.add(object);
 						}
 						field.set(o, classForInjection);
