@@ -3,6 +3,8 @@ package entities.contracts;
 import entities.Client;
 import entities.Contract;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,12 +14,16 @@ import java.time.format.DateTimeFormatter;
  * @author andruha.tm
  * @version 1.0
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class InternetContract extends Contract {
 
 	/**
 	 * Max ethernet speed allowed by Contract
 	 */
 	private double maxSpeed;
+
+	public InternetContract() {
+	}
 
 	/**
 	 * Constructor - creates instance of Ethernet Contract

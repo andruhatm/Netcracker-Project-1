@@ -10,6 +10,11 @@
         <postgresql>42.2.20</postgresql>
         <ibatis-core>3.0</ibatis-core>
         <junit>4.13.1</junit>
+        <jaxb-api>2.3.1</jaxb-api>
+        <jaxb-core>3.0.0-M4</jaxb-core>
+        <jaxb-impl>2.1</jaxb-impl>
+        <lombok>1.18.4</lombok>
+        <activation>1.1.1</activation>
     </properties>
 
     <groupId>org.netcracker</groupId>
@@ -69,6 +74,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>7.8.2</version>
@@ -104,8 +115,26 @@
             <artifactId>ibatis-core</artifactId>
             <version>${ibatis-core}</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb-api}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>${jaxb-core}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${jaxb-impl}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>${activation}</version>
+        </dependency>
     </dependencies>
-
 
 </project>

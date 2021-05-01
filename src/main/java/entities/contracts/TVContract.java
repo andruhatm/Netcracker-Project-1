@@ -4,6 +4,8 @@ import entities.Client;
 import entities.Contract;
 import entities.enums.Package;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,11 +15,15 @@ import java.time.format.DateTimeFormatter;
  * @author andruha.tm
  * @version 1.0
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TVContract extends Contract {
 	/**
 	 * TV package field
 	 */
 	private Package aPackage;
+
+	public TVContract() {
+	}
 
 	/**
 	 * Constructor - creates new instance of TV Contract

@@ -2,14 +2,19 @@ package entities.contracts;
 
 import entities.Client;
 import entities.Contract;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Entity-class of Mobile Ethernet Contract
+ *
  * @author andruha.tm
  * @version 1.0
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MobileContract extends Contract {
 	/**
 	 * Count of minutes allowed by Contract
@@ -24,24 +29,28 @@ public class MobileContract extends Contract {
 	 */
 	private float gbCount;
 
+	public MobileContract() {
+	}
+
 	/**
 	 * Constructor - creates new instance of Mobil Ethernet Contract
-	 * @param id unique identifier
-	 * @param startingDate starting date of contract
+	 *
+	 * @param id            unique identifier
+	 * @param startingDate  starting date of contract
 	 * @param finishingDate finishing date of contract
-	 * @param client client's entity associated with Contract
-	 * @param minutesCount minutes count allowed by Contract
-	 * @param smsCount SMS's count allowed by Contract
-	 * @param gbCount Gb's count allowed by Contract
+	 * @param client        client's entity associated with Contract
+	 * @param minutesCount  minutes count allowed by Contract
+	 * @param smsCount      SMS's count allowed by Contract
+	 * @param gbCount       Gb's count allowed by Contract
 	 */
 	public MobileContract(
-		final int id,
-		final LocalDate startingDate,
-		final LocalDate finishingDate,
-		final Client client,
-		final int minutesCount,
-		final int smsCount,
-		final float gbCount
+					final int id,
+					final LocalDate startingDate,
+					final LocalDate finishingDate,
+					final Client client,
+					final int minutesCount,
+					final int smsCount,
+					final float gbCount
 	) {
 		super(id, startingDate, finishingDate, client);
 		this.minutesCount = minutesCount;
@@ -65,6 +74,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for getting value of {@link MobileContract#minutesCount}
+	 *
 	 * @return Contract minutes count
 	 */
 	public int getMinutesCount() {
@@ -73,6 +83,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for setting value of {@link MobileContract#minutesCount}
+	 *
 	 * @param minutesCount
 	 */
 	public void setMinutesCount(final int minutesCount) {
@@ -81,6 +92,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for getting value of {@link MobileContract#smsCount}
+	 *
 	 * @return Contract Sms's count
 	 */
 	public int getSmsCount() {
@@ -89,6 +101,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for setting value of {@link MobileContract#smsCount}
+	 *
 	 * @param smsCount
 	 */
 	public void setSmsCount(final int smsCount) {
@@ -97,6 +110,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for getting value of {@link MobileContract#gbCount}
+	 *
 	 * @return Contract Gb's count
 	 */
 	public float getGbCount() {
@@ -105,6 +119,7 @@ public class MobileContract extends Contract {
 
 	/**
 	 * mthd for setting value of {@link MobileContract#gbCount}
+	 *
 	 * @param gbCount
 	 */
 	public void setGbCount(final float gbCount) {
@@ -113,19 +128,20 @@ public class MobileContract extends Contract {
 
 	/**
 	 * toString mthd
+	 *
 	 * @return MobileContract obj values
 	 */
 	@Override
 	public String toString() {
 		return (
-			"MobileContract{" +
-			"minutesCount=" +
-			minutesCount +
-			", SMSCount=" +
-			smsCount +
-			", GbCount=" +
-			gbCount +
-			'}'
+						"MobileContract{" +
+										"minutesCount=" +
+										minutesCount +
+										", SMSCount=" +
+										smsCount +
+										", GbCount=" +
+										gbCount +
+										'}'
 		);
 	}
 }

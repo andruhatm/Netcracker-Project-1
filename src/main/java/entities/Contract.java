@@ -1,12 +1,29 @@
 package entities;
 
+import entities.contracts.InternetContract;
+import entities.contracts.MobileContract;
+import entities.contracts.TVContract;
+import repo.xml.DatedAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 /**
  * Entity-class of Contract
+ *
  * @author andruha.tm
  * @version 1.0
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({
+				MobileContract.class,
+				InternetContract.class,
+				TVContract.class})
 public class Contract {
 	/**
 	 * Contract id
@@ -15,31 +32,34 @@ public class Contract {
 	/**
 	 * Contract start date
 	 */
+	@XmlJavaTypeAdapter(DatedAdapter.class)
 	private LocalDate startingDate;
 	/**
 	 * Contract end date
 	 */
+	@XmlJavaTypeAdapter(DatedAdapter.class)
 	private LocalDate finishingDate;
 	/**
 	 * Client entity associated with Contract
 	 */
 	private Client client;
 
-	public Contract(){
+	public Contract() {
 	}
 
 	/**
 	 * Constuctor - creating new instance of Contract
-	 * @param id id
-	 * @param startingDate Contract starting date
+	 *
+	 * @param id            id
+	 * @param startingDate  Contract starting date
 	 * @param finishingDate Contract finishing date
-	 * @param client Associated client entity
+	 * @param client        Associated client entity
 	 */
 	public Contract(
-		final int id,
-		final LocalDate startingDate,
-		final LocalDate finishingDate,
-		final Client client
+					final int id,
+					final LocalDate startingDate,
+					final LocalDate finishingDate,
+					final Client client
 	) {
 		this.id = id;
 		this.startingDate = startingDate;
@@ -49,6 +69,7 @@ public class Contract {
 
 	/**
 	 * mthd getting value of {@link Contract#id}
+	 *
 	 * @return Contract id
 	 */
 	public int getId() {
@@ -57,6 +78,7 @@ public class Contract {
 
 	/**
 	 * mthd for setting value of {@link Contract#id}
+	 *
 	 * @param id
 	 */
 	public void setId(final int id) {
@@ -65,6 +87,7 @@ public class Contract {
 
 	/**
 	 * mthd for getting value of {@link Contract#startingDate}
+	 *
 	 * @return contract start date
 	 */
 	public LocalDate getStartingDate() {
@@ -73,6 +96,7 @@ public class Contract {
 
 	/**
 	 * mthd for setting value of {@link Contract#startingDate}
+	 *
 	 * @param startingDate
 	 */
 	public void setStartingDate(final LocalDate startingDate) {
@@ -81,6 +105,7 @@ public class Contract {
 
 	/**
 	 * mthd for getting value of {@link Contract#finishingDate}
+	 *
 	 * @return contract finish date
 	 */
 	public LocalDate getFinishingDate() {
@@ -89,6 +114,7 @@ public class Contract {
 
 	/**
 	 * mthd for setting value of {@link Contract#finishingDate}
+	 *
 	 * @param finishingDate
 	 */
 	public void setFinishingDate(final LocalDate finishingDate) {
@@ -97,6 +123,7 @@ public class Contract {
 
 	/**
 	 * mthd for getting value of {@link Contract#client}
+	 *
 	 * @return client entity
 	 */
 	public Client getClient() {
@@ -105,6 +132,7 @@ public class Contract {
 
 	/**
 	 * mthd for setting value of {@link Contract#client}
+	 *
 	 * @param client
 	 */
 	public void setClient(final Client client) {
@@ -113,21 +141,22 @@ public class Contract {
 
 	/**
 	 * toString mthd
+	 *
 	 * @return Contract obj values
 	 */
 	@Override
 	public String toString() {
 		return (
-			"Contract{" +
-			"id=" +
-			id +
-			", startingDate=" +
-			startingDate +
-			", finishingDate=" +
-			finishingDate +
-			", client=" +
-			client.toString() +
-			'}'
+						"Contract{" +
+										"id=" +
+										id +
+										", startingDate=" +
+										startingDate +
+										", finishingDate=" +
+										finishingDate +
+										", client=" +
+										client.toString() +
+										'}'
 		);
 	}
 }

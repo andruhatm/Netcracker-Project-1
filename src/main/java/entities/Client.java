@@ -1,7 +1,12 @@
 package entities;
 
 import entities.enums.Sex;
+import repo.xml.DatedAdapter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -11,6 +16,8 @@ import java.time.Period;
  * @author andruha.tm
  * @version 1.0
  */
+@XmlRootElement(name = "client")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Client {
 	/**
 	 * Client id
@@ -31,6 +38,7 @@ public class Client {
 	/**
 	 * Client's date of birth
 	 */
+	@XmlJavaTypeAdapter(DatedAdapter.class)
 	private LocalDate dateOfBirth;
 	/**
 	 * Client's sex
@@ -44,6 +52,12 @@ public class Client {
 	 * Client's passport id
 	 */
 	private int passportId;
+
+	/**
+	 * no args constructor
+	 */
+	public Client() {
+	}
 
 	/**
 	 * Constructor - creates new instance of Client

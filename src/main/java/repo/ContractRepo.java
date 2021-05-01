@@ -6,16 +6,24 @@ import entities.contracts.MobileContract;
 import entities.contracts.TVContract;
 import java.util.Comparator;
 import java.util.function.Predicate;
+
+import lombok.Getter;
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import repo.injection.annotations.MyInject;
 import repo.sorters.Sorter;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * Repository class for various Contracts
  * @author andruha.tm
  * @version 1.0
  */
+@XmlRootElement(name = "repository")
+@XmlType(propOrder = {"repo"})
 public final class ContractRepo implements Repo<Contract> {
 
 	static final Logger logger = Logger.getLogger(ContractRepo.class);
@@ -28,6 +36,8 @@ public final class ContractRepo implements Repo<Contract> {
 	/**
 	 * Contract Array field
 	 */
+	@Getter
+	@XmlElement(name = "contract")
 	private Contract[] repo;
 
 	/**
