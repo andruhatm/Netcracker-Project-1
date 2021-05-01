@@ -4,6 +4,8 @@ import entities.Contract;
 import entities.contracts.InternetContract;
 import entities.contracts.MobileContract;
 import entities.contracts.TVContract;
+
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -189,6 +191,8 @@ public final class ContractRepo implements Repo<Contract> {
 		if (pointer >= 0) {
 			System.arraycopy(repo, 0, repository, 0, pointer);
 		}
+		System.out.println("returned repo here");
+		System.out.println(Arrays.toString(repository));
 		return repository;
 	}
 

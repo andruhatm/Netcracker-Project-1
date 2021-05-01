@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<repository>
+    <contract xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mobileContract">
+        <id>1</id>
+        <startingDate value="2020-11-14"/>
+        <finishingDate value="2020-12-14"/>
+        <client>
+            <id>0</id>
+            <name>nuzhniy</name>
+            <surname>sergey</surname>
+            <patronymic>sergeevich</patronymic>
+            <dateOfBirth value="2000-05-05"/>
+            <sex>male</sex>
+            <passportSeries>7821</passportSeries>
+            <passportId>123456</passportId>
+        </client>
+        <minutesCount>100</minutesCount>
+        <smsCount>50</smsCount>
+        <gbCount>7.0</gbCount>
+    </contract>
+    <contract xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tvContract">
+        <id>2</id>
+        <startingDate value="2020-11-15"/>
+        <finishingDate value="2020-12-15"/>
+        <client>
+            <id>0</id>
+            <name>nuzhniy</name>
+            <surname>sergey</surname>
+            <patronymic>sergeevich</patronymic>
+            <dateOfBirth value="2000-05-05"/>
+            <sex>male</sex>
+            <passportSeries>7821</passportSeries>
+            <passportId>123456</passportId>
+        </client>
+        <aPackage>first</aPackage>
+    </contract>
+    <contract xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mobileContract">
+        <id>9</id>
+        <startingDate value="2020-11-22"/>
+        <finishingDate value="2020-12-22"/>
+        <client>
+            <id>2</id>
+            <name>krutoy</name>
+            <surname>igor</surname>
+            <patronymic>igorevich</patronymic>
+            <dateOfBirth value="1988-02-23"/>
+            <sex>male</sex>
+            <passportSeries>4356</passportSeries>
+            <passportId>543424</passportId>
+        </client>
+        <minutesCount>500</minutesCount>
+        <smsCount>100</smsCount>
+        <gbCount>10.0</gbCount>
+    </contract>
+    <contract xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mobileContract">
+        <id>11</id>
+        <startingDate value="2020-11-22"/>
+        <finishingDate value="2020-12-22"/>
+        <client>
+            <id>2</id>
+            <name>krutoy</name>
+            <surname>igor</surname>
+            <patronymic>igorevich</patronymic>
+            <dateOfBirth value="1988-02-23"/>
+            <sex>male</sex>
+            <passportSeries>4356</passportSeries>
+            <passportId>543424</passportId>
+        </client>
+        <minutesCount>500</minutesCount>
+        <smsCount>100</smsCount>
+        <gbCount>10.0</gbCount>
+    </contract>
+</repository>

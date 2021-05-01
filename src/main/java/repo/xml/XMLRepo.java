@@ -38,9 +38,7 @@ public class XMLRepo {
 		try {
 			JAXBContext context = JAXBContext.newInstance(contractRepository.getClass());
 			Marshaller marshaller = context.createMarshaller();
-
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
 			marshaller.marshal(contractRepository, new File(fileName));
 			logger.info("Repository " + contractRepository + " saved");
 		} catch (JAXBException exception) {
@@ -60,16 +58,15 @@ public class XMLRepo {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 			FileInputStream fileInputStream = new FileInputStream(fileName);
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
-			System.out.println("unmarshalling");
-			System.out.println();
-			for (Contract contract : ((ContractRepo) unmarshaller.unmarshal(inputStreamReader)).getRepo()) {
-				System.out.println("current cintract");
-				System.out.println(contract);
-				contractRepository.add(contract);
+			ContractRepo repo = ((ContractRepo) unmarshaller.unmarshal(inputStreamReader));
+
+			for (int i=0; i< repo.getLength(); i++) {
+				contractRepository.add(repo.getById(i));
 			}
-			logger.info("Getting XML dump in contacts repository was successfully");
+
+			logger.info("Success");
 		} catch (FileNotFoundException | JAXBException exception) {
-			logger.error("Error: Getting XML dump in contacts repository failed", exception);
+			logger.error("Failed get repository from xml", exception);
 			exception.printStackTrace();
 		}
 	}
